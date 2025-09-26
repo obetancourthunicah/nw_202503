@@ -1,4 +1,6 @@
 <?php
+session_start();
+// $_SESSION
 $habitaciones = [
     [
         "codigo" => "001",
@@ -58,4 +60,48 @@ function getSelectOptions(
         $htmlBuffer[] = $tmp;
     }
     return implode("", $htmlBuffer);
+}
+
+function obtenerReservas()
+{
+    $reservas = [];
+    if (isset($_SESSION["reservas_hotel"])) {
+        $reservas = $_SESSION["reservas_hotel"];
+    }
+    return $reservas;
+}
+
+function getHabitacionDetail($codigo)
+{
+    $habitacion = [];
+    $habitaciones = obtenerHabitaciones();
+    foreach ($habitaciones as $fhabitacion) {
+        if ($fhabitacion["codigo"] === $codigo) {
+            $habitacion = $fhabitacion;
+            break;
+        }
+    }
+    return $habitacion;
+}
+
+function guardarReserva($arrReserva)
+{
+    /*
+    Si existe la colección de reservas en sesión
+        Extraer las reservas ya guardadas
+    Sino
+        Crear la colección de reservas
+    
+    Vamos a adjuntar a la colección la nueva reserva
+
+    Guardar la colección actualizada en la sesión de php
+
+    */
+    $reservas = [];
+    if (isset($_SESSION["reservas_hotel"])) {
+        $reservas = $_SESSION["reservas_hotel"];
+    }
+
+    $reservas[] = $arrReserva;
+    $_SESSION["reservas_hotel"] = $reservas;
 }

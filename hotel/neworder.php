@@ -26,6 +26,17 @@ if (isset($_POST["btnCrearReserva"])) {
     $codHabitacion = $_POST["codHabitacion"];
     $txtPhone = $_POST["txtPhone"];
     $withVista = intval($_POST["withVista"]);
+
+    guardarReserva(
+        [
+            "cliente" => $txtCliente,
+            "adultos" => $numAdultos,
+            "infantes" => $numInfantes,
+            "habitacion" => $codHabitacion,
+            "telefono" => $txtPhone,
+            "vista" => $withVista
+        ]
+    );
 }
 
 ?>
