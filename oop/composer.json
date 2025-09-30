@@ -1,0 +1,11 @@
+{
+    "name": "unicah/oop",
+    "description": "PHP Academic OOP Lessons",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Unicah\\Oop\\": "src/"
+        }
+    },
+    "require": {}
+}
