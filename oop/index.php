@@ -3,6 +3,9 @@ session_start();
 require_once "vendor/autoload.php";
 
 use \Unicah\Oop\Contactos\Contacto;
+use \Unicah\Oop\Utilitarios\FileLogger;
+
+$logger = new FileLogger("Info");
 
 $name = "";
 $email = "";
@@ -207,6 +210,24 @@ if (isset($_POST["btnEnviar"])) {
             </div>
         </div>
     </footer>
+    <aside>
+        <?php
+        for ($i = 0; $i < 100; $i++) {
+            if ($i % 2 === 0) {
+                $logger->Info("Loggin Cycle # " . $i, "index.php", []);
+            }
+            if ($i % 3 === 0) {
+                $logger->Debug("Loggin Cycle # " . $i, "index.php", []);
+            }
+            if ($i % 4 === 0) {
+                $logger->Warn("Loggin Cycle # " . $i, "index.php", []);
+            }
+            if ($i % 5 === 0) {
+                $logger->Error("Loggin Cycle # " . $i, "index.php", []);
+            }
+        }
+        ?>
+    </aside>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
