@@ -4,8 +4,15 @@ require_once "vendor/autoload.php";
 
 use \Unicah\Oop\Contactos\Contacto;
 use \Unicah\Oop\Utilitarios\FileLogger;
+use \Unicah\Oop\Utilitarios\DateFormater;
+use \Unicah\Oop\Geometry\Square;
+
+date_default_timezone_set("America/Tegucigalpa");
 
 $logger = new FileLogger("Info");
+
+$currentDate = new DateTime();
+
 
 $name = "";
 $email = "";
@@ -210,6 +217,16 @@ if (isset($_POST["btnEnviar"])) {
             </div>
         </div>
     </footer>
+    <aside>
+        <?php
+        echo DateFormater::toISOStringDate($currentDate);
+        echo "<hr/>";
+        $cuadrado = new Square(5);
+        echo $cuadrado->area();
+        echo "<br/>";
+        echo $cuadrado->perimeter();
+        ?>
+    </aside>
     <aside>
         <?php
         for ($i = 0; $i < 100; $i++) {
